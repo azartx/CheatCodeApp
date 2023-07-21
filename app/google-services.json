@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "669223723956",
+    "project_id": "gamecheatapp-dcc6a",
+    "storage_bucket": "gamecheatapp-dcc6a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669223723956:android:8b94372b78b9cebb5c08e1",
+        "android_client_info": {
+          "package_name": "com.solo4.cheatcodeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "669223723956-bm9btiujjrj0f4tqk548cbetnp9qpk4g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0R8-e7sPN8fEXYB_1j9rjPMCpJW0tXA4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "669223723956-bm9btiujjrj0f4tqk548cbetnp9qpk4g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
