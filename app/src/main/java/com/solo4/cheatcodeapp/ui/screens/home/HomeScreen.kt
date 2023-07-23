@@ -22,7 +22,7 @@ import com.solo4.cheatcodeapp.ui.screens.destinations.CheatSheetScreenDestinatio
 import org.koin.androidx.compose.koinViewModel
 
 @RootNavGraph(start = true)
-@Destination
+@Destination()
 @Composable
 fun HomeScreen(navigator: DestinationsNavigator) {
     val viewModel: HomeViewModel = koinViewModel()

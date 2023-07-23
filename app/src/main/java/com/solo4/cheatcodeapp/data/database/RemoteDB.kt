@@ -17,7 +17,7 @@ class RemoteDB(private val deserializer: CheatDeserializer) {
                 .document(preferredPlatform.name)
                 .get()
                 .addOnSuccessListener {
-                    cont.resume(deserializer.responseToCheats(it.data!!))
+                    cont.resume(deserializer.responseToCheats(it.data!!, preferredPlatform))
                 }
                 .addOnFailureListener {
                     Log.e("RemoteDB", it.stackTraceToString())
