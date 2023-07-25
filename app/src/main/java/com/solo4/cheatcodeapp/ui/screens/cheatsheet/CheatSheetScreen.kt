@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.solo4.cheatcodeapp.model.cheats.Cheat
 import com.solo4.cheatcodeapp.model.cheats.CheatCategory
@@ -18,7 +19,9 @@ import org.koin.androidx.compose.koinViewModel
 @Destination(navArgsDelegate = CheatSheetArgs::class)
 @Composable
 fun CheatSheetScreen() {
-    val viewModel: CheatSheetViewModel = koinViewModel()
+    val viewModel: CheatSheetViewModel by viewModel {
+        throw NotImplementedError()
+    }
 
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(

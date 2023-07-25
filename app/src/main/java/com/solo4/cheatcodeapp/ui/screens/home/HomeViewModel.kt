@@ -7,8 +7,9 @@ import com.solo4.cheatcodeapp.data.settings.AppSettingsManager
 import com.solo4.cheatcodeapp.model.cheats.CheatCategory
 import com.solo4.cheatcodeapp.ui.base.AppVM
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel(
+class HomeViewModel @Inject constructor(
     private val repo: HomeRepository,
     private val appSettingsManager: AppSettingsManager
 ) : AppVM() {
