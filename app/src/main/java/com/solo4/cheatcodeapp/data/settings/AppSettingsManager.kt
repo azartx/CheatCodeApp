@@ -5,8 +5,9 @@ import androidx.core.content.edit
 import com.solo4.cheatcodeapp.data.home.PreferredPlatform
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import javax.inject.Inject
 
-class AppSettingsManager(private val preferences: SharedPreferences) {
+class AppSettingsManager @Inject constructor(private val preferences: SharedPreferences) {
 
     private val _preferredGamePlatform = MutableStateFlow(preferredGamePlatformInternal)
     val preferredGamePlatform = _preferredGamePlatform.asStateFlow()

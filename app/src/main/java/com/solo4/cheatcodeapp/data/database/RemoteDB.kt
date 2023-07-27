@@ -6,10 +6,11 @@ import com.google.firebase.ktx.Firebase
 import com.solo4.cheatcodeapp.data.database.deserializers.CheatDeserializer
 import com.solo4.cheatcodeapp.data.home.PreferredPlatform
 import com.solo4.cheatcodeapp.model.cheats.Cheat
+import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-class RemoteDB(private val deserializer: CheatDeserializer) {
+class RemoteDB @Inject constructor(private val deserializer: CheatDeserializer) {
     suspend fun getPlatformCheats(preferredPlatform: PreferredPlatform) =
         suspendCoroutine<List<Cheat>> { cont ->
             Firebase.firestore

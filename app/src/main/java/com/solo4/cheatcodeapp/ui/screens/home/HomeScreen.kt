@@ -18,14 +18,16 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.solo4.cheatcodeapp.data.home.PreferredPlatform
+import com.solo4.cheatcodeapp.ui.components.daggerViewModel
 import com.solo4.cheatcodeapp.ui.screens.destinations.CheatSheetScreenDestination
-import org.koin.androidx.compose.koinViewModel
 
 @RootNavGraph(start = true)
 @Destination()
 @Composable
 fun HomeScreen(navigator: DestinationsNavigator) {
-    val viewModel: HomeViewModel = koinViewModel()
+    val viewModel: HomeViewModel = daggerViewModel(
+        vmCreatorWithExtras = { this.homeViewModelFactory.create(HomeViewModel::class.java) }
+    )
 
     val preferredPlatform by viewModel.preferredPlatform.collectAsState()
 

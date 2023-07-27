@@ -6,8 +6,9 @@ import com.solo4.cheatcodeapp.model.cheats.CheatCategory
 import com.solo4.cheatcodeapp.model.cheats.PCCommand
 import com.solo4.cheatcodeapp.model.cheats.PlayStationCommand
 import com.solo4.cheatcodeapp.model.cheats.XboxCommand
+import javax.inject.Inject
 
-class CheatDeserializer {
+class CheatDeserializer @Inject constructor() {
     fun responseToCheats(responseMap: Map<String, Any>, platform: PreferredPlatform): List<Cheat> {
         val commandsList = if (platform == PreferredPlatform.PLAY_STATION) PlayStationCommand.entries else
             if (platform == PreferredPlatform.XBOX) XboxCommand.entries else PCCommand.entries
