@@ -1,4 +1,4 @@
-package com.solo4.cheatcodeapp
+package com.solo4.cheatcodeapp.ui.screens
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

@@ -12,16 +12,12 @@ class App : Application() {
         super.onCreate()
         app = this
         appComponent = DaggerAppComponent.builder()
-            .appDeps(AppDepsImpl())
+            .app(this)
             .build()
         /*startKoin {
             androidContext(this@App)
             modules(listOf(viewModelModule, utilsModule, dataModule, repoModule))
         }*/
-    }
-
-    private inner class AppDepsImpl : AppComponent.AppDeps {
-        override val app: App = this@App
     }
 
     companion object {

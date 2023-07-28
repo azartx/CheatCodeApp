@@ -1,16 +1,18 @@
-package com.solo4.cheatcodeapp.data.settings
+package com.solo4.cheatcodeapp.data.settings.settingsmanager.impl
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
 import com.solo4.cheatcodeapp.data.home.PreferredPlatform
+import com.solo4.cheatcodeapp.data.settings.settingsmanager.SettingsManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
-class AppSettingsManager @Inject constructor(private val preferences: SharedPreferences) {
+class AppSettingsManagerImpl @Inject constructor(private val preferences: SharedPreferences) :
+    SettingsManager {
 
     private val _preferredGamePlatform = MutableStateFlow(preferredGamePlatformInternal)
-    val preferredGamePlatform = _preferredGamePlatform.asStateFlow()
+    override val preferredGamePlatform = _preferredGamePlatform.asStateFlow()
 
     private var preferredGamePlatformInternal: PreferredPlatform
         get() = PreferredPlatform.valueOf(
@@ -21,7 +23,7 @@ class AppSettingsManager @Inject constructor(private val preferences: SharedPref
         )
         set(value) { preferences.edit { putString(PREFERRED_PLATFORM_KEY, value.name) } }
 
-    suspend fun updatePreferredPlatform(newPlatform: PreferredPlatform) {
+    override suspend fun updatePreferredPlatform(newPlatform: PreferredPlatform) {
         preferredGamePlatformInternal = newPlatform
         _preferredGamePlatform.emit(newPlatform)
     }

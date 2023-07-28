@@ -1,24 +1,26 @@
 package com.solo4.cheatcodeapp.data.di
 
-import com.solo4.cheatcodeapp.data.database.RemoteDB
-import com.solo4.cheatcodeapp.data.settings.AppSettingsManager
+import com.solo4.cheatcodeapp.data.database.CheatsDatabase
+import com.solo4.cheatcodeapp.data.database.impl.firebase.RemoteDB
+import com.solo4.cheatcodeapp.data.settings.settingsmanager.SettingsManager
+import com.solo4.cheatcodeapp.data.settings.settingsmanager.impl.AppSettingsManagerImpl
+import dagger.Binds
 import dagger.Module
 import org.koin.dsl.module
 
 val dataModule = module {
     single { RemoteDB(get()) }
-    single { AppSettingsManager(get()) }
+    single { AppSettingsManagerImpl(get()) }
 }
 
-@Module()
+@Module(includes = [DataModule.DataBinds::class])
 object DataModule {
-    /*@Provides
-    fun provideRemoteDB(deserializer: CheatDeserializer): RemoteDB {
-        return RemoteDB(deserializer)
-    }
+    @Module
+    interface DataBinds {
+        @Binds
+        fun bindCheatsDatabaseImplToCheatDatabase(dbImpl: RemoteDB): CheatsDatabase
 
-    @Provides
-    fun provideAppSettingsManager(prefs: SharedPreferences): AppSettingsManager {
-        return AppSettingsManager(prefs)
-    }*/
+        @Binds
+        fun bindAppSettingsManagerImplToSettingsManager(appSettingsManagerImpl: AppSettingsManagerImpl): SettingsManager
+    }
 }

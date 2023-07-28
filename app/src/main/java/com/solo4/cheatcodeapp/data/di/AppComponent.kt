@@ -13,10 +13,9 @@ import dagger.Component
     RepoModule::class,
     UtilsModule::class,
     ViewModelModule::class
-],
-dependencies = [AppComponent.AppDeps::class])
+])
 interface AppComponent {
-    val deps: AppDeps
+    val app: App
 
     val homeViewModelFactory: HomeViewModel.Factory
     val cheatSheetViewModelFactory: CheatSheetViewModel.Factory
@@ -25,12 +24,8 @@ interface AppComponent {
     interface Builder {
 
         @BindsInstance
-        fun appDeps(deps: AppDeps): Builder
+        fun app(app: App): Builder
         fun build(): AppComponent
-    }
-
-    interface AppDeps {
-        val app: App
     }
 }
 
