@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">CheatCodeApp</string>
+    <string name="platform_xbox">Platform: XBOX</string>
+    <string name="platform_playstation">Platform: PlayStation</string>
+    <string name="platform_pc">Platform: PC</string>
+    <string name="home_title_choice_platform">Choose the platform on which you play GTA</string>
+    <string name="title_home">Home Screen</string>
+    <string name="title_cheat_sheet">Cheat Sheet Screen</string>
+    <string name="button_back">Back</string>
+    <string name="hpme_title_choice_category">Select a category</string>
 </resources>

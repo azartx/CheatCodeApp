@@ -6,10 +6,10 @@ import dagger.Module
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-val viewModelModule = module {
+/*val viewModelModule = module {
     viewModel { HomeViewModel(get(), get()) }
     viewModel { CheatSheetViewModel(get()) }
-}
+}*/
 
 @Module
 object ViewModelModule {
