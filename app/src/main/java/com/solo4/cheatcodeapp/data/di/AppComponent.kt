@@ -4,6 +4,10 @@ import android.app.Application
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import com.solo4.cheatcodeapp.App
+import com.solo4.cheatcodeapp.data.di.modules.DataModule
+import com.solo4.cheatcodeapp.data.di.modules.RepoModule
+import com.solo4.cheatcodeapp.data.di.modules.UtilsModule
+import com.solo4.cheatcodeapp.data.di.modules.ViewModelModule
 import com.solo4.cheatcodeapp.ui.screens.MainActivityViewModel
 import com.solo4.cheatcodeapp.ui.screens.cheatsheet.CheatSheetViewModel
 import com.solo4.cheatcodeapp.ui.screens.home.HomeViewModel

@@ -1,4 +1,4 @@
-package com.solo4.cheatcodeapp.data.di
+package com.solo4.cheatcodeapp.data.di.modules
 
 import com.solo4.cheatcodeapp.data.cheatsheet.CheatSheetRepository
 import com.solo4.cheatcodeapp.data.cheatsheet.impl.CheatSheetRepositoryImpl

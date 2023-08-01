@@ -1,9 +1,10 @@
-package com.solo4.cheatcodeapp.data.di
+package com.solo4.cheatcodeapp.data.di.modules
 
 import com.solo4.cheatcodeapp.data.cache.Cacheable
 import com.solo4.cheatcodeapp.data.cache.impl.cheats.CheatCache
 import com.solo4.cheatcodeapp.data.database.CheatsDataSource
 import com.solo4.cheatcodeapp.data.database.impl.firebase.RemoteDB
+import com.solo4.cheatcodeapp.data.di.CheatCacheQualifier
 import com.solo4.cheatcodeapp.data.settings.settingsmanager.SettingsManager
 import com.solo4.cheatcodeapp.data.settings.settingsmanager.impl.AppSettingsManagerImpl
 import com.solo4.cheatcodeapp.model.cheats.Cheat
