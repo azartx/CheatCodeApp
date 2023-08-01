@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -38,6 +39,8 @@ fun HomeScreen(navigator: DestinationsNavigator) {
         vmCreatorWithExtras = { this.homeViewModelFactory.create(HomeViewModel::class.java) }
     )
     val preferredPlatform by viewModel.preferredPlatform.collectAsState()
+
+
 
     Column(modifier = Modifier.fillMaxSize()) {
         if (preferredPlatform == PreferredPlatform.NONE) {
@@ -96,6 +99,8 @@ fun HomeScreen(navigator: DestinationsNavigator) {
                 )
             }
         } else {
+            LaunchedEffect(key1 = "", block = { viewModel.requestPlatformCheats() })
+
             Text(
                 modifier = Modifier.align(Alignment.CenterHorizontally),
                 text = stringResource(R.string.hpme_title_choice_category)

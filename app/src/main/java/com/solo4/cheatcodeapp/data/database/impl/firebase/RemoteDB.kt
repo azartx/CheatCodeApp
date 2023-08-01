@@ -3,7 +3,7 @@ package com.solo4.cheatcodeapp.data.database.impl.firebase
 import android.util.Log
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.solo4.cheatcodeapp.data.database.CheatsDatabase
+import com.solo4.cheatcodeapp.data.database.CheatsDataSource
 import com.solo4.cheatcodeapp.data.database.deserializers.CheatDeserializer
 import com.solo4.cheatcodeapp.data.home.PreferredPlatform
 import com.solo4.cheatcodeapp.model.cheats.Cheat
@@ -11,7 +11,7 @@ import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-class RemoteDB @Inject constructor(private val deserializer: CheatDeserializer) : CheatsDatabase {
+class RemoteDB @Inject constructor(private val deserializer: CheatDeserializer) : CheatsDataSource {
     override suspend fun getPlatformCheats(preferredPlatform: PreferredPlatform) =
         suspendCoroutine<List<Cheat>> { cont ->
             Firebase.firestore

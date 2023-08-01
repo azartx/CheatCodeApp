@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.ramcosta.composedestinations.annotation.Destination
@@ -26,8 +27,14 @@ fun CheatSheetScreen() {
         LazyColumn(
             modifier = Modifier.fillMaxWidth(),
             content = {
-                items(10) {
-                    ConsoleSheetItem(Modifier, CheatSheetItem(Cheat(1, CheatCategory.Character, "Some info", XboxCommand.entries), isFavourite = true))
+                items(viewModel.cheats.value) { cheat ->
+                    ConsoleSheetItem(
+                        Modifier,
+                        CheatSheetItem(
+                            cheat,
+                            isFavourite = true
+                        )
+                    )
                 }
         })
     }
