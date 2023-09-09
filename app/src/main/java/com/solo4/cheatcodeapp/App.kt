@@ -1,8 +1,8 @@
 package com.solo4.cheatcodeapp
 
 import android.app.Application
-import com.solo4.cheatcodeapp.data.di.AppComponent
-import com.solo4.cheatcodeapp.data.di.DaggerAppComponent
+import com.solo4.cheatcodeapp.di.AppComponent
+import com.solo4.cheatcodeapp.di.DaggerAppComponent
 
 class App : Application() {
 
@@ -14,10 +14,6 @@ class App : Application() {
         appComponent = DaggerAppComponent.builder()
             .app(this)
             .build()
-        /*startKoin {
-            androidContext(this@App)
-            modules(listOf(viewModelModule, utilsModule, dataModule, repoModule))
-        }*/
     }
 
     companion object {

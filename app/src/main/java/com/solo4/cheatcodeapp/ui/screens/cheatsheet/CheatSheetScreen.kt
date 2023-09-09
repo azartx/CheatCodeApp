@@ -8,11 +8,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.ramcosta.composedestinations.annotation.Destination
-import com.solo4.cheatcodeapp.model.cheats.Cheat
-import com.solo4.cheatcodeapp.model.cheats.CheatCategory
-import com.solo4.cheatcodeapp.model.cheats.XboxCommand
 import com.solo4.cheatcodeapp.model.cheatsheet.CheatSheetArgs
-import com.solo4.cheatcodeapp.model.cheatsheet.CheatSheetItem
 import com.solo4.cheatcodeapp.ui.components.ConsoleSheetItem
 import com.solo4.cheatcodeapp.ui.components.daggerViewModel
 
@@ -30,10 +26,7 @@ fun CheatSheetScreen() {
                 items(viewModel.cheats.value) { cheat ->
                     ConsoleSheetItem(
                         Modifier,
-                        CheatSheetItem(
-                            cheat,
-                            isFavourite = true
-                        )
+                        cheat
                     )
                 }
         })

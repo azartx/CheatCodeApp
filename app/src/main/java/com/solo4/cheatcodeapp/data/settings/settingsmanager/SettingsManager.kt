@@ -1,6 +1,6 @@
 package com.solo4.cheatcodeapp.data.settings.settingsmanager
 
-import com.solo4.cheatcodeapp.data.home.PreferredPlatform
+import com.solo4.cheatcodeapp.domain.model.PreferredPlatform
 import kotlinx.coroutines.flow.StateFlow
 
 interface SettingsManager {

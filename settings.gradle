@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "CheatCodeApp"
 include ':app'
+include ':domain'
+include ':data'

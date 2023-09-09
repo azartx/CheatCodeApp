@@ -2,7 +2,7 @@ package com.solo4.cheatcodeapp.data.settings.settingsmanager.impl
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import com.solo4.cheatcodeapp.data.home.PreferredPlatform
+import com.solo4.cheatcodeapp.domain.model.PreferredPlatform
 import com.solo4.cheatcodeapp.data.settings.settingsmanager.SettingsManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

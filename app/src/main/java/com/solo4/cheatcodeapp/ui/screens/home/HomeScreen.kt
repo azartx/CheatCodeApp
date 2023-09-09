@@ -27,7 +27,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.solo4.cheatcodeapp.R
-import com.solo4.cheatcodeapp.data.home.PreferredPlatform
+import com.solo4.cheatcodeapp.domain.model.PreferredPlatform
 import com.solo4.cheatcodeapp.ui.components.daggerViewModel
 import com.solo4.cheatcodeapp.ui.screens.destinations.CheatSheetScreenDestination
 
@@ -39,8 +39,6 @@ fun HomeScreen(navigator: DestinationsNavigator) {
         vmCreatorWithExtras = { this.homeViewModelFactory.create(HomeViewModel::class.java) }
     )
     val preferredPlatform by viewModel.preferredPlatform.collectAsState()
-
-
 
     Column(modifier = Modifier.fillMaxSize()) {
         if (preferredPlatform == PreferredPlatform.NONE) {
@@ -115,7 +113,7 @@ fun HomeScreen(navigator: DestinationsNavigator) {
                                     navigator.navigate(
                                         CheatSheetScreenDestination(
                                             preferredPlatform,
-                                            category.databaseName
+                                            category.category.name
                                         )
                                     )
                                 },
@@ -131,7 +129,7 @@ fun HomeScreen(navigator: DestinationsNavigator) {
                                     navigator.navigate(
                                         CheatSheetScreenDestination(
                                             preferredPlatform,
-                                            category.databaseName
+                                            category.category.name
                                         )
                                     )
                                 },

@@ -1,8 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.google.gms.google-services'
     id 'kotlin-kapt'
+    id("com.google.gms.google-services")
     id 'com.google.devtools.ksp' version '1.9.0-1.0.12'
 }
 
@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.solo4.cheatcodeapp"
-        minSdk 22
+        minSdk 28
         targetSdk 34
         versionCode 1
         versionName "1.0"
@@ -30,11 +30,15 @@ android {
         }
     }
     java {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '18'
     }
     buildFeatures {
         compose true
@@ -51,12 +55,15 @@ android {
 
 dependencies {
 
+    implementation(project("::data"))
+    implementation(project("::domain"))
+
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation platform('org.jetbrains.kotlin:kotlin-bom:1.8.0')
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
     implementation 'androidx.activity:activity-compose:1.7.2'
 
-    implementation platform('androidx.compose:compose-bom:2022.10.00')
+    implementation platform('androidx.compose:compose-bom:2023.06.01')
     implementation 'androidx.compose.ui:ui'
     implementation 'androidx.compose.ui:ui-graphics'
     implementation 'androidx.compose.ui:ui-tooling-preview'
@@ -76,16 +83,15 @@ dependencies {
     implementation 'io.insert-koin:koin-androidx-compose:3.4.5'
     implementation 'io.insert-koin:koin-androidx-compose-navigation:3.4.5'
 
-    implementation 'com.google.dagger:dagger-android:2.47'
-    implementation 'com.google.dagger:dagger-android-support:2.47' // if you use the support libraries
-    kapt 'com.google.dagger:dagger-android-processor:2.47'
-    kapt 'com.google.dagger:dagger-compiler:2.47'
+    implementation 'com.google.dagger:dagger-android:2.48'
+    implementation 'com.google.dagger:dagger-android-support:2.48' // if you use the support libraries
+    kapt 'com.google.dagger:dagger-android-processor:2.48'
+    kapt 'com.google.dagger:dagger-compiler:2.48'
     kapt "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.7.0"
 
-    implementation platform('com.google.firebase:firebase-bom:32.1.1')
-    implementation 'com.google.firebase:firebase-analytics-ktx'
-    implementation 'com.google.firebase:firebase-auth-ktx'
-    implementation 'com.google.firebase:firebase-firestore-ktx'
-  //  implementation 'com.google.firebase:firebase-storage-ktx'
-   // implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation("io.reactivex.rxjava3:rxjava:3.1.6")
+    implementation("io.reactivex.rxjava3:rxandroid:3.0.2")
+
+    def room_version = "2.5.2"
+    implementation "androidx.room:room-runtime:$room_version"
 }

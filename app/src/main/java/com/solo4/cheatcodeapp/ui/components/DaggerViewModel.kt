@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras
-import com.solo4.cheatcodeapp.data.di.AppComponent
-import com.solo4.cheatcodeapp.data.di.appComponent
+import com.solo4.cheatcodeapp.di.AppComponent
+import com.solo4.cheatcodeapp.di.appComponent
 
 @Composable
 inline fun <reified T : ViewModel> daggerViewModel(
