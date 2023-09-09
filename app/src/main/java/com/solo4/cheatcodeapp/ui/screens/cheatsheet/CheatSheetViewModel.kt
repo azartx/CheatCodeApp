@@ -1,6 +1,7 @@
 package com.solo4.cheatcodeapp.ui.screens.cheatsheet
 
 import android.app.Application
+import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
@@ -9,21 +10,22 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.solo4.cheatcodeapp.domain.interactors.ObserveCheatsInfoUseCase
-import com.solo4.cheatcodeapp.domain.model.Cheat
+import com.solo4.cheatcodeapp.domain.interactors.UpdateCheatUseCase
 import com.solo4.cheatcodeapp.mappers.CheatMapper
-import com.solo4.cheatcodeapp.mappers.CommandMapper
 import com.solo4.cheatcodeapp.model.cheatsheet.CheatSheetArgs
 import com.solo4.cheatcodeapp.model.cheatsheet.UiCheat
 import com.solo4.cheatcodeapp.ui.base.AppVM
 import com.solo4.cheatcodeapp.ui.screens.navArgs
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 class CheatSheetViewModel(
     application: Application,
     savedStateHandle: SavedStateHandle,
     observeCheatsInfoUseCase: ObserveCheatsInfoUseCase,
-    private val commandMapper: CommandMapper,
+    private val updateCheatInfoUseCase: UpdateCheatUseCase,
     private val cheatMapper: CheatMapper
 ) : AppVM(application) {
 
@@ -33,15 +35,32 @@ class CheatSheetViewModel(
     val cheats: MutableState<List<UiCheat>> = mutableStateOf(emptyList())
 
     init {
-        /*launchIoScope {
-            cheats.value = cheatSheetRepository.getPlatformCheats(args.platform)
-                .filter { it.category.databaseName == args._category }
-        }*/
         disposableBag.add(
             observeCheatsInfoUseCase.execute(args.platform)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
                 .subscribe { cheats ->
                     this.cheats.value = cheats.map { cheatMapper.toUi(args.platform, it) }
                 }
+        )
+    }
+
+    fun onCheatFavouriteIconClicked(cheat: UiCheat) {
+        disposableBag.add(
+            updateCheatInfoUseCase.execute(
+                cheatMapper.toDomain(
+                    args.platform,
+                    cheat.copy(isFavourite = !cheat.isFavourite))
+            )
+                .subscribe(
+                    {
+                        Log.e("ffff", "ONCOMPLETE")
+                    },
+                    {
+
+                        Log.e("ffff", "ONERROR", it)
+                    }
+                )
         )
     }
 
@@ -53,7 +72,7 @@ class CheatSheetViewModel(
     class Factory @Inject constructor(
         private val application: Application,
         private val observeCheatsInfoUseCase: ObserveCheatsInfoUseCase,
-        private val commandMapper: CommandMapper,
+        private val updateCheatInfoUseCase: UpdateCheatUseCase,
         private val cheatMapper: CheatMapper
     ) : AbstractSavedStateViewModelFactory() {
         override fun <T : ViewModel> create(
@@ -65,7 +84,7 @@ class CheatSheetViewModel(
                 application,
                 handle,
                 observeCheatsInfoUseCase,
-                commandMapper,
+                updateCheatInfoUseCase,
                 cheatMapper
             ) as T
         }
@@ -75,7 +94,7 @@ class CheatSheetViewModel(
                 application,
                 extras.createSavedStateHandle(),
                 observeCheatsInfoUseCase,
-                commandMapper,
+                updateCheatInfoUseCase,
                 cheatMapper
             ) as T
         }

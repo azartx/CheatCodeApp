@@ -28,10 +28,15 @@ class CheatSheetRepositoryImpl @Inject constructor(
 
     override fun getCheatsInfo(): Observable<List<CheatInfo>> {
         return cheatInfoDataSource.getAllCheatsInfo()
-            .map { cheatsInfo -> cheatsInfo.map { cheatInfoMapper.mapToDomain(it) } }
+            .subscribeOn(Schedulers.io())
+            .map {cheatsInfo ->
+                 cheatsInfo.map { cheatInfoMapper.mapToDomain(it) }
+            }
     }
 
     override fun updateCheatInfo(cheatInfo: CheatInfo): Completable {
-        return cheatInfoDataSource.updateCheatInfo(cheatInfoMapper.mapToData(cheatInfo))
+        return cheatInfoDataSource
+            .updateCheatInfo(cheatInfoMapper.mapToData(cheatInfo))
+            .subscribeOn(Schedulers.io())
     }
 }

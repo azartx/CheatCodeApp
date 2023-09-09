@@ -26,7 +26,13 @@ fun CheatSheetScreen() {
                 items(viewModel.cheats.value) { cheat ->
                     ConsoleSheetItem(
                         Modifier,
-                        cheat
+                        cheat,
+                        onFavoriteClick = {
+                            viewModel.onCheatFavouriteIconClicked(cheat)
+                        },
+                        onClick = {
+
+                        }
                     )
                 }
         })

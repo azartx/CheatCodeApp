@@ -1,6 +1,7 @@
 package com.solo4.cheatcodeapp.di.modules
 
 import com.solo4.cheatcodeapp.domain.interactors.ObserveCheatsInfoUseCase
+import com.solo4.cheatcodeapp.domain.interactors.UpdateCheatUseCase
 import com.solo4.cheatcodeapp.domain.repositories.CheatSheetRepository
 import dagger.Module
 import dagger.Provides
@@ -10,5 +11,10 @@ object DomainModule {
     @Provides
     fun provideObserveCheatsUseCase(cheatSheetRepository: CheatSheetRepository): ObserveCheatsInfoUseCase {
         return ObserveCheatsInfoUseCase(cheatSheetRepository)
+    }
+
+    @Provides
+    fun provideUpdateCheatUseCase(cheatSheetRepository: CheatSheetRepository): UpdateCheatUseCase {
+        return UpdateCheatUseCase(cheatSheetRepository)
     }
 }

@@ -7,18 +7,20 @@ import io.reactivex.rxjava3.core.Observable
 
 class ObserveCheatsInfoUseCase(private val repository: CheatSheetRepository) {
     fun execute(preferredPlatform: PreferredPlatform): Observable<List<Cheat>> {
-        return repository.getCheatsInfo()
-            .zipWith(repository.getPlatformCheats(preferredPlatform).toObservable()) { cheatInfos, cheatEntities ->
-                cheatEntities.map { cheatEntity ->
-                    Cheat(
-                        id = cheatEntity.id,
-                        category = cheatEntity.category,
-                        description = cheatEntity.description,
-                        guide = cheatEntity.guide,
-                        isFavourite = cheatInfos
-                            .firstOrNull { it.id == cheatEntity.id }?.isFavourite ?: false
-                    )
-                }
+        return Observable.combineLatest(
+            repository.getCheatsInfo(),
+            repository.getPlatformCheats(preferredPlatform).toObservable()
+        ) { cheatsInfo, cheatsEntities ->
+            cheatsEntities.map { cheatEntity ->
+                Cheat(
+                    id = cheatEntity.id,
+                    category = cheatEntity.category,
+                    description = cheatEntity.description,
+                    guide = cheatEntity.guide,
+                    isFavourite = cheatsInfo
+                        .firstOrNull { it.id == cheatEntity.id }?.isFavourite ?: false
+                )
             }
+        }
     }
 }
