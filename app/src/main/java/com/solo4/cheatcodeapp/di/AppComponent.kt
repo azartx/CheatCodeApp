@@ -12,7 +12,9 @@ import com.solo4.cheatcodeapp.ui.screens.cheatsheet.CheatSheetViewModel
 import com.solo4.cheatcodeapp.ui.screens.home.HomeViewModel
 import dagger.BindsInstance
 import dagger.Component
+import javax.inject.Singleton
 
+@Singleton
 @Component(modules = [
     DataModule::class,
     DomainModule::class,

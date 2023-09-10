@@ -7,8 +7,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.createSavedStateHandle
-import androidx.lifecycle.viewmodel.CreationExtras
 import com.solo4.cheatcodeapp.domain.interactors.ObserveCheatsInfoUseCase
 import com.solo4.cheatcodeapp.domain.interactors.UpdateCheatUseCase
 import com.solo4.cheatcodeapp.mappers.CheatMapper
@@ -83,16 +81,6 @@ class CheatSheetViewModel(
             return CheatSheetViewModel(
                 application,
                 handle,
-                observeCheatsInfoUseCase,
-                updateCheatInfoUseCase,
-                cheatMapper
-            ) as T
-        }
-
-        override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
-            return CheatSheetViewModel(
-                application,
-                extras.createSavedStateHandle(),
                 observeCheatsInfoUseCase,
                 updateCheatInfoUseCase,
                 cheatMapper

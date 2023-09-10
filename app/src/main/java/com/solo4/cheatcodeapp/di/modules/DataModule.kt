@@ -16,6 +16,7 @@ import com.solo4.cheatcodeapp.domain.repositories.HomeRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 @Module(includes = [DataModule.DataBinds::class, DataModule.RepoBinds::class])
 object DataModule {
@@ -47,6 +48,7 @@ object DataModule {
     interface RepoBinds {
         @Binds
         fun bindHomeRepositoryImplToHomeRepository(homeRepoImpl: HomeRepositoryImpl): HomeRepository
+        @Singleton
         @Binds
         fun bindCheatSheetRepositoryImplToCheatSheetRepository(
             cheatSheetRepositoryImpl: CheatSheetRepositoryImpl
